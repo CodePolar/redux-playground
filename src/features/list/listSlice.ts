@@ -1,8 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
 
+export interface ListItemType {
+    title: string,
+    completed: boolean
+}
+
 export interface ListState {
-    list: string[],
+    list: ListItemType[],
     loading: string
 }
 
@@ -15,13 +20,16 @@ export const listSlice = createSlice({
     name: 'list',
     initialState,
     reducers: {
-        increment: (state, action: PayloadAction<string>) => {
+        add: (state: ListState, action: PayloadAction<ListItemType>) => {
             state.list.push(action.payload);
+        },
+        done: (state: ListState, action: PayloadAction<number>) => {
+            state.list[action.payload].completed = true;
         }
     }  
 })
 
-export const { increment } = listSlice.actions;
+export const { add, done } = listSlice.actions;
 export const selectList =  (state: RootState) => state.list.list;
 
 export default listSlice.reducer;
