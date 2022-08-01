@@ -52,7 +52,7 @@ const Incompleted = ({list}: {list: ListItemType[]}) => {
           </Button>
           </>
         </Box>
-      ) : <></>;
+      ) : <Box key={i}></Box>;
     })}
     </Box>
     </>
@@ -78,7 +78,7 @@ const Completed = ({list}: {list: ListItemType[]}) => {
           </Button>
           </>
         </Box>
-      ) : <></>;
+      ) : <Box key={i}></Box>;
     })}
     </Box>
     </>
